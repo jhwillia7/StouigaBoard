@@ -1,0 +1,124 @@
+<!--Nav Bar-->
+<div id="container">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed">
+    <a class="navbar-brand" href="/">Stouiji Board</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <button class="btn btn-link pull-right" data-target="#storyModal" data-toggle="modal" style="color: gray">New Story</button>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            Sort By...
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Most Recent</a>
+            <a class="dropdown-item" href="#">Most Active</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" id="favorites" href="#">My Favorites</a>
+            <a class="dropdown-item" id="myPosts" href="#">My Posts</a>
+          </div>
+        </li>
+      </ul>
+
+      <div class="greeting"></div>
+     
+      <div class="logout">
+        <a href="/logout" class="nav-link btn btn-outline-success my-2 my-sm-0" tabindex"-1" role="button" >Log Out</a>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<!--Ouiji Board Graphic-->
+<div class="ouiji">
+
+  <div class="module" id="module">
+    <div class="headline">Stouiji Board</div>
+
+  </div>
+</div>
+<div class="chalkboard">
+  <!-- <h1>{{msg}}</h1> -->
+  <h2>Welcome To StouijiBoard!</h2>
+
+  <hr>
+  
+  {{#each entries}} {{> entries/story-block}} {{/each}}
+    
+  
+</div>
+
+{{!-- New Story Modal --}}
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="modal fade" data-keyboard="false" data-backdrop="static" id="storyModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" modal-lg role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">New Story</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="col-12">
+                <!-- ++++++++++++++++++++++++++++++++++++++++ -->
+                <h1>{{msg}}</h1>
+                <h6>Click the prompt to generate the title/starting point for your story.</h6>
+                <form class="clearfix mb-4" action="POST" id="storyForm">
+                  <div class="form-group">
+                    <form>
+                      <div class="form-group">
+                        <textarea type="text" class="form-control" id="rndmPrmptFld" cols="80" rows="2" placeholder="Prompt"></textarea>
+                      </div>
+                      <button type="submit" class="btn btn-primary" id="randomGen">Generate Random Prompt</button>
+                    </form>
+                  </div>
+                  <div class="setRules">
+                    <h6>Set the contribution rule for your story:</h6>
+                    <div class="form-group">
+                      <select class="form-control form-control-lg" id="questionOne">
+                        <option selected>Choose a word contribution limit</option>
+                        
+                      </select>
+                    </div>
+                  </div>
+                  <br>
+                  <h6>Begin your story!</h6>
+                  <div class="form-group">
+                    <textarea class="form-control" id="storyText" aria-describedby="example-description" placeholder="Enter Example Description"></textarea>
+                    <div id="wordCount" style="display:none"></div>
+                  </div>
+                  <button type="submit" id="newSubmit" class="btn btn-primary float-right">Submit</button>
+                </form>
+              </div>
+              <!-- ++++++++++++++++++++++++++++++++++++++++ -->
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{!-- Script for Modals --}}
+<script>
+  $('#myModal').on('shown.bs.modal', function () {
+    $('#myInput').trigger('focus')
+  })
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script src="/js/signup.js"></script>
+<script src="/js/login.js"></script>
